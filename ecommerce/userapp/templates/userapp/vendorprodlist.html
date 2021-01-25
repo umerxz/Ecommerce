@@ -1,0 +1,34 @@
+{%extends 'base.html'%}
+{%block homenav%}
+<li class="li"> <a class="mylink" href="{%url 'userss:vendor-home-url'%}"> Home</a></li>
+{%endblock%}
+{%block content%}
+  {%if prodt%}
+    <h2 class="vplh"> &nbsp&nbsp  List of All the Products of {{request.user|capfirst}}</h2><hr class="line">
+    <table  class="vplt">
+        <tr class="vplthr">
+          <th><b>Title</b></th>
+          <th><b>Description</b></th>
+          <th><b>Price</b></td>
+          <th><b>Quantity</b></th>
+          <th><b>Image</b></th>
+          <th><b></b></th>
+          <th><b></b></th>
+        </tr>
+        {%for item in prodt%}
+        <tr class="vpltr">
+          <td>  {{item.title}}</td>
+          <td>  {{item.description}}</td>
+          <td>  {{item.price}}</td>
+          <td>  {{item.stock}}</td>
+          <td> <a href="../media/{{item.img}}"> <img height="70px"src="{{item.img.url}}"> </a> </td>
+          <td> <a class="btn btn-primary" href="{%url 'userss:vendor-prod-update-url' item.id%}"> Update </a> </td>
+          <td> <a class="btn btn-warning" href="{%url 'userss:vendor-prod-delete-url' item.id%}"> Delete </a> </td>
+        </tr>
+        {%endfor%}
+    </table>
+  {%else%}
+    <h5>No Products Added Yet!</h5>
+  {%endif%}
+  <a style="margin-left:10%; margin-top:1%;" class="btn btn-dark" href="{%url 'userss:vendor-prod-add-url'%}"> Add a Product </a>
+{%endblock%}

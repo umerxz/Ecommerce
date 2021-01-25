@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <h1>CART</h1>
+
+    <h2>TOTAL ITEMS: {{order.get_item_total}}</h2>
+    <h2>TOTAL PRICE: {{order.get_cart_total}}</h2>
+
+    <table>
+      <tr>
+        <th>Title</th>
+        <th>Image</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+      </tr>
+      {%for item in items%}
+      <tr>
+        <td>{{item.product.title}}</td>
+        <td> <img height="100px" width="170px" src="{{item.product.img.url}}" alt=""> </td>
+        <td>{{item.product.price}}</td>
+        <td>{{item.quantity}}
+        <td>{{item.get_total}}</td>
+      </tr>
+      {%endfor%}
+    </table>
+
+    <a onclick="myFunction()" href="{%url 'userss:pay-url'%}" role="button">Pay</a>
+
+  </body>
+  <script>
+  function myFunction() {alert("Your order will be delivered to you within 5 days. Thank you for shopping with us!");}
+  </script>
+</html>

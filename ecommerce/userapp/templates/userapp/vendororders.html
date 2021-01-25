@@ -1,0 +1,46 @@
+{%extends 'base.html'%}
+
+{%block homenav%}
+<li class="li"> <a class="mylink" href="{%url 'userss:vendor-home-url'%}"> Home</a></li>
+{%endblock%}
+
+{%block content%}
+  {%if item%}
+    {{order.customer}}
+    {{order.get_item_total}}
+    {{order.get_cart_total}}
+
+    {%for i in order%}
+    <div style="margin-left:10%; margin-top:5px">
+      <h4>Order No.{{i.id}}</h4>
+      <h4>Buyer: {{i.customer}}</h4>
+    </div>
+    <table class="vplt">
+      <tr class="vplthr">
+        <th>Title</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+        <th>Image</th>
+      </tr>
+      {%for items in item%}
+        {% if i.id == items.order.id %}
+        <tr class="vpltr">
+          <td>  {{items.product.title}}</td>
+          <td>  {{items.product.description}}</td>
+          <td>  {{items.product.price}}</td>
+          <td>  {{items.quantity}}</td>
+          <td>  {{items.get_total}}</td>
+          <td> <a href="../media/{{items.product.img}}"> <img height="70px"src="{{items.product.img.url}}"> </a> </td>
+        </tr>
+        {% endif %}
+      {%endfor%}
+      {{order.get_cart_total}}
+    </table>
+    <hr>
+    {%endfor%}
+  {%else%}
+    <h3>No Products Added Yet!</h3>
+  {%endif%}
+{%endblock%}

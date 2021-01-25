@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+{%load static%}
+
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <link rel="stylesheet" href="{%static 'ecommerce/css/signup1.css'%}">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<body class="bgimg" style="background-image:url('{%static 'shopcart.jpg'%}');">
+
+      <form  method="POST">
+        {%csrf_token%}
+        {{form1.username.errors}}
+        {{form1.username.label}}:  {{form1.username}}<br>
+
+        {{form2.firstname.errors}}
+        First Name:  {{form2.firstname}}<br>
+
+        {{form2.lastname.errors}}
+        Last Name:  {{form2.lastname}}<br>
+
+        {{form2.email.errors}}
+        {{form2.email.label}}:  {{form2.email}}<br>
+
+        {{form2.Register_As.errors}}
+        Register As:       {{form2.Register_As}}<br>
+
+        {{form1.password1.errors}}
+        {{form1.password1.label}}:  {{form1.password1}}
+
+        <svg type='button' data-toggle="modal" data-target="#myModal" style="width:auto;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+          <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+        </svg> <br>
+        {{form1.password2.errors}}
+        Confirm Password:  {{form1.password2}}<br>
+        {{form1.non_field_errors}}
+        <button type="submit" href="{%url 'userss:login-url'%}">Register</button>
+        <p class="message">Already Have An Account? <a href="{%url 'userss:login-url'%}">Login</a></p>
+      </form>
+  <div class="container">
+
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+
+          <h4 class="modal-title">Password Instructions</h4>
+        </div>
+        <div class="modal-body">
+        	<ul>
+              <li>Your password can’t be too similar to your other personal information.</li>
+              <li>Your password must contain at least 8 characters.</li>
+              <li>Your password can’t be a commonly used password.</li>
+              <li>Your password can’t be entirely numeric.</li>
+       		</ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</body>
+<script type="text/javascript" src="{%static 'ecommerce/js/code.js'%}">
+
+</script>
+</html>

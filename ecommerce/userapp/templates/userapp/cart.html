@@ -1,0 +1,88 @@
+{%extends 'base.html'%}
+{%block homenav%}
+<li class="li"> <a class="mylink" href="{%url 'userss:customer-prod-list-url'%}"> Home</a></li>
+{%endblock%}
+
+{%block content%}
+    <style media="screen">
+      .arrow-up {
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: 5px solid black;
+        margin-bottom: 5px;
+      }
+      .arrow-up:hover{
+        cursor: pointer;
+      }
+      .arrow-down:hover{
+        cursor: pointer;
+      }
+      .arrow-down {
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 5px solid black;
+      }
+      .sameline{
+        display:inline-block;
+      }
+    </style>
+    <script type="text/javascript">
+    function getCookie(name) {
+      let cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+          const cookies = document.cookie.split(';');
+          for (let i = 0; i < cookies.length; i++) {
+              const cookie = cookies[i].trim();
+              // Does this cookie string begin with the name we want?
+              if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                  cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                  break;
+              }
+          }
+      }
+      return cookieValue;
+    }
+    const csrftoken = getCookie('csrftoken');
+    </script>
+  </head>
+  <body>
+
+    <a href="{%url 'userss:customer-prod-list-url'%}">Back</a>
+
+    <h1>CART</h1>
+
+    <h2>TOTAL ITEMS: {{order.get_item_total}}</h2>
+    <h2>TOTAL PRICE: {{order.get_cart_total}}</h2>
+
+    <table>
+      <tr>
+        <th>Title</th>
+        <th>Image</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+      </tr>
+      {%for item in items%}
+      <tr>
+        <td>{{item.product.title}}</td>
+        <td> <img height="100px" width="170px" src="{{item.product.img.url}}" alt=""> </td>
+        <td>{{item.product.price}}</td>
+        <td>{{item.quantity}}
+          <div class="sameline">
+            {%if item.product.stock > 0 %}
+              <div class="arrow-up update-cart" data-product={{item.product.id}} data-action="add"></div>
+            {%endif%}
+            <div class="arrow-down update-cart" data-product={{item.product.id}} data-action="remove"></div>
+          </div>
+        </td>
+        <td>{{item.get_total}}</td>
+      </tr>
+      {%endfor%}
+    </table>
+
+    <a href="{%url 'userss:checkout-url'%}" role="button">Checkout</a>
+{%endblock%}

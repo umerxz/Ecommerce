@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{%load static%}
+
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="{%static 'ecommerce/css/style.css'%}">
+  </head>
+  <body class="bgimg" style="background-image:url('{%static 'shopcart.jpg'%}');">
+
+
+        <form class="login-form" method="POST">
+          {%csrf_token%}
+          {{form.username.errors}}
+          {{form.username.label}}: {{form.username}}
+
+          {{form.password.errors}}
+          {{form.password.label}}: {{form.password}}
+
+          <button type='submit'>login</button>
+          {{form.non_field_errors}}
+
+          <p>Not registered? <a href="{%url 'userss:signup-url'%}">Create an account</a></p>
+        </form>
+      </div>
+    </div>
+
+  </body>
+  <script type="text/javascript" src="{%static 'ecommerce/js/code.js'%}">
+  </script>
+</html>
